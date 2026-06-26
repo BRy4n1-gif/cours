@@ -42,7 +42,6 @@ body::before {
   z-index: 0;
 }
 
-/* NAV */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -61,7 +60,6 @@ nav {
 .nav-links a { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--dim); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
 .nav-links a:hover { color: var(--white); }
 
-/* HERO */
 .hero {
   position: relative;
   z-index: 10;
@@ -94,13 +92,11 @@ nav {
 .hero-big-num { font-size: clamp(5rem, 12vw, 10rem); font-weight: 900; color: rgba(255,255,255,0.05); line-height: 1; letter-spacing: -0.05em; }
 .hero-big-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.22em; color: var(--dim); margin-top: 0.5rem; text-transform: uppercase; }
 
-/* SECTION */
 .section { position: relative; z-index: 10; padding: 5rem 3rem; }
 .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
 .section-num { font-family: var(--mono); font-size: 0.62rem; color: var(--dim); letter-spacing: 0.1em; }
 .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
 
-/* GRID */
 .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .course-card { background: var(--bg); padding: 2rem 1.75rem; transition: background 0.25s; }
 .course-card:hover { background: var(--surface); }
@@ -114,7 +110,6 @@ nav {
 .arrow { transition: transform 0.2s; }
 .view-btn:hover .arrow { transform: translateX(3px); }
 
-/* ── MODAL VIEWER (estilo imagen 2) ── */
 .modal-overlay {
   display: none;
   position: fixed;
@@ -146,7 +141,6 @@ nav {
   to   { opacity:1; transform: scale(1); }
 }
 
-/* toolbar bar — mimics the PDF viewer bar in img2 */
 .pdf-toolbar {
   display: flex;
   align-items: center;
@@ -158,11 +152,7 @@ nav {
   flex-shrink: 0;
 }
 
-.pdf-toolbar-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
+.pdf-toolbar-left { display: flex; align-items: center; gap: 0.75rem; }
 
 .tb-icon {
   width: 28px; height: 28px;
@@ -192,13 +182,8 @@ nav {
   max-width: 300px;
 }
 
-.pdf-toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+.pdf-toolbar-right { display: flex; align-items: center; gap: 0.5rem; }
 
-/* page counter */
 .page-info {
   font-family: var(--mono);
   font-size: 0.6rem;
@@ -209,15 +194,8 @@ nav {
   padding: 0.2rem 0.55rem;
 }
 
-/* PDF IFRAME */
-.pdf-frame {
-  flex: 1;
-  width: 100%;
-  border: none;
-  background: #f4f4f4;
-}
+.pdf-frame { flex: 1; width: 100%; border: none; background: #f4f4f4; }
 
-/* loading state */
 .pdf-loading {
   display: none;
   flex: 1;
@@ -238,14 +216,8 @@ nav {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.pdf-loading-text {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: #888;
-  letter-spacing: 0.1em;
-}
+.pdf-loading-text { font-family: var(--mono); font-size: 0.65rem; color: #888; letter-spacing: 0.1em; }
 
-/* BOTTOM BAR with Cerrar button */
 .pdf-bottombar {
   display: flex;
   align-items: center;
@@ -288,7 +260,6 @@ nav {
 }
 .btn-close:hover { background: #2a6aec; }
 
-/* FOOTER */
 footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
 .footer-copy { font-family: var(--mono); font-size: 0.58rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
 .footer-gh { font-family: var(--mono); font-size: 0.58rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
@@ -344,15 +315,13 @@ footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px
 </section>
 
 <footer>
-  <span class="footer-copy">© 2025 — Sílabos</span>
-  <a href="https://github.com/BRy4n1-gif/gitcs2026" class="footer-gh" target="_blank">GitHub →</a>
+  <span class="footer-copy">© 2025 — Sílabos IEI</span>
+  <a href="https://github.com/BRy4n1-gif/Silabos6" class="footer-gh" target="_blank">GitHub →</a>
 </footer>
 
 <!-- MODAL VIEWER -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal-box">
-
-    <!-- toolbar top -->
     <div class="pdf-toolbar">
       <div class="pdf-toolbar-left">
         <button class="tb-icon" title="Menú">☰</button>
@@ -367,7 +336,6 @@ footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px
       </div>
     </div>
 
-    <!-- PDF content -->
     <div class="pdf-loading" id="pdfLoading">
       <div class="pdf-loading-spinner"></div>
       <div class="pdf-loading-text">Cargando documento...</div>
@@ -375,31 +343,29 @@ footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px
     <iframe class="pdf-frame" id="mFrame" src="about:blank"
       onload="onFrameLoad()" style="display:none"></iframe>
 
-    <!-- bottom bar -->
     <div class="pdf-bottombar">
       <a class="btn-open-gh" id="btnGH" href="#" target="_blank">Abrir en GitHub</a>
       <button class="btn-close" onclick="closeModal()">Cerrar</button>
     </div>
-
   </div>
 </div>
 
 <script>
 const GH_USER   = 'BRy4n1-gif';
-const GH_REPO   = 'cours';
+const GH_REPO   = 'Silabos6';
 const GH_BRANCH = 'main';
 
 const COURSES = [
-  { code:'EST314', title:'Aprendizaje No Supervisado',         pdf:'finesi/gitcs2026/silabos/aprendizajeNoSupervisado.pdf',        meta:'Grupo: Único · Obligatorio' },
-  { code:'EST316', title:'Arquitectura de Redes y Protocolos', pdf:'finesi/gitcs2026/silabos/arquitecturaDeRedesYProtocolos.pdf',   meta:'Grupo: Único · Obligatorio' },
-  { code:'EST315', title:'Gestión de Proyectos TICS',          pdf:'finesi/gitcs2026/silabos/gestionDeProyectosTICS.pdf',           meta:'Grupo: Único · Obligatorio' },
-  { code:'EST210', title:'Modelos Lineales',                   pdf:'finesi/gitcs2026/silabos/modelosLineales.pdf',                  meta:'Grupo: Único · Obligatorio' },
-  { code:'EST209', title:'Regresión Lineal y No Lineal',       pdf:'finesi/gitcs2026/silabos/regresionLinealYNoLineal.pdf',         meta:'Grupo: Único · Obligatorio' },
-  { code:'EST317', title:'Series de Tiempo',                   pdf:'finesi/gitcs2026/silabos/seriesDeTiempo.pdf',                   meta:'Grupo: Único · Obligatorio' }
+  { code:'EST314', title:'Aprendizaje No Supervisado',         pdf:'aprendizajeNoSupervisado.pdf',       meta:'Grupo: Único · Obligatorio' },
+  { code:'EST316', title:'Arquitectura de Redes y Protocolos', pdf:'arquitecturaDeRedesYProtocolos.pdf', meta:'Grupo: Único · Obligatorio' },
+  { code:'EST315', title:'Gestión de Proyectos TICS',          pdf:'gestionDeProyectosTICS.pdf',         meta:'Grupo: Único · Obligatorio' },
+  { code:'EST210', title:'Modelos Lineales',                   pdf:'modelosLineales.pdf',                meta:'Grupo: Único · Obligatorio' },
+  { code:'EST209', title:'Regresión Lineal y No Lineal',       pdf:'regresionLinealYNoLineal.pdf',       meta:'Grupo: Único · Obligatorio' },
+  { code:'EST317', title:'Series de Tiempo',                   pdf:'seriesDeTiempo.pdf',                 meta:'Grupo: Único · Obligatorio' }
 ];
 
 function rawUrl(path) {
-  return `https://github.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/${path}`;
+  return `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/${path}`;
 }
 
 function viewerUrl(path) {
@@ -418,7 +384,6 @@ function buildGrid() {
       <button class="view-btn" onclick="openModal(${i})">
         Ver sílabo <span class="arrow">→</span>
       </button>
-
     </div>
   `).join('');
 }
@@ -433,7 +398,6 @@ function openModal(i) {
   document.getElementById('btnGH').href = `https://github.com/${GH_USER}/${GH_REPO}/blob/${GH_BRANCH}/${c.pdf}`;
   document.getElementById('tbDownload').onclick = () => window.open(raw, '_blank');
 
-  // show loading
   const frame = document.getElementById('mFrame');
   const loading = document.getElementById('pdfLoading');
   frame.style.display = 'none';
