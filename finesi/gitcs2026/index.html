@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SÍLABOS // 2025-II</title>
+<meta name="description" content="Sílabos oficiales del ciclo 2026-I — Ingeniería Estadística e Informática">
+<meta property="og:title" content="Sílabos 2026-I">
+<meta property="og:description" content="Accede a los sílabos oficiales de todos los cursos del ciclo.">
+<title>SÍLABOS // 2026-I</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;900&family=Share+Tech+Mono&display=swap');
 
@@ -15,8 +18,19 @@
   --border-b: rgba(255,255,255,0.18);
   --white: #ffffff;
   --dim: rgba(255,255,255,0.4);
+  --accent: #3a7bfd;
   --mono: 'Share Tech Mono', monospace;
   --sans: 'Barlow', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg: #f5f5f3;
+  --bg2: #eeeeec;
+  --surface: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --border-b: rgba(0,0,0,0.18);
+  --white: #0a0a0a;
+  --dim: rgba(0,0,0,0.45);
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -28,6 +42,7 @@ body {
   color: var(--white);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 0.25s, color 0.25s;
 }
 
 body::before {
@@ -35,8 +50,8 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    linear-gradient(rgba(128,128,128,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128,128,128,0.06) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
@@ -55,15 +70,28 @@ nav {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
+[data-theme="light"] nav { background: rgba(245,245,243,0.88); }
 .nav-logo { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.22em; color: var(--dim); }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
 .nav-links a { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--dim); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
 .nav-links a:hover { color: var(--white); }
+.theme-toggle {
+  width: 30px; height: 30px;
+  border: 1px solid var(--border-b);
+  background: none;
+  border-radius: 50%;
+  color: var(--dim);
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { color: var(--white); border-color: var(--white); }
 
 .hero {
   position: relative;
   z-index: 10;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +104,7 @@ nav {
   font-family: var(--sans);
   font-size: clamp(100px, 20vw, 220px);
   font-weight: 900;
-  color: rgba(255,255,255,0.03);
+  color: rgba(128,128,128,0.05);
   line-height: 1;
   letter-spacing: -0.04em;
   pointer-events: none;
@@ -89,26 +117,67 @@ nav {
 .hero-cta { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bg); background: var(--white); padding: 0.9rem 2rem; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.2s; align-self: flex-start; }
 .hero-cta:hover { opacity: 0.82; }
 .hero-stat-block { position: absolute; right: 3rem; top: 50%; transform: translateY(-50%); text-align: right; }
-.hero-big-num { font-size: clamp(5rem, 12vw, 10rem); font-weight: 900; color: rgba(255,255,255,0.05); line-height: 1; letter-spacing: -0.05em; }
+.hero-big-num { font-size: clamp(5rem, 12vw, 10rem); font-weight: 900; color: rgba(128,128,128,0.08); line-height: 1; letter-spacing: -0.05em; }
 .hero-big-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.22em; color: var(--dim); margin-top: 0.5rem; text-transform: uppercase; }
 
 .section { position: relative; z-index: 10; padding: 5rem 3rem; }
-.section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.section-header { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.section-header-left { display: flex; align-items: baseline; gap: 1.5rem; }
 .section-num { font-family: var(--mono); font-size: 0.62rem; color: var(--dim); letter-spacing: 0.1em; }
 .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; }
 
+.search-wrap { display: flex; align-items: center; gap: 0.75rem; }
+.search-input {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  background: var(--surface);
+  border: 1px solid var(--border-b);
+  padding: 0.55rem 1rem;
+  width: 220px;
+  outline: none;
+  transition: border-color 0.2s, width 0.2s;
+}
+.search-input::placeholder { color: var(--dim); }
+.search-input:focus { border-color: var(--accent); width: 260px; }
+.filter-btn {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: none;
+  border: 1px solid var(--border-b);
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn.active, .filter-btn:hover { color: var(--white); border-color: var(--white); }
+
 .courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-.course-card { background: var(--bg); padding: 2rem 1.75rem; transition: background 0.25s; }
+.course-card { background: var(--bg); padding: 2rem 1.75rem; transition: background 0.25s; position: relative; }
 .course-card:hover { background: var(--surface); }
 .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
-.card-idx { font-family: var(--mono); font-size: 0.58rem; color: rgba(255,255,255,0.2); letter-spacing: 0.08em; }
+.card-idx { font-family: var(--mono); font-size: 0.58rem; color: rgba(128,128,128,0.4); letter-spacing: 0.08em; }
+.card-top-right { display: flex; align-items: center; gap: 0.5rem; }
 .card-code { font-family: var(--mono); font-size: 0.62rem; color: var(--dim); letter-spacing: 0.1em; border: 1px solid var(--border-b); padding: 0.18rem 0.55rem; }
+.fav-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 0.9rem; color: rgba(128,128,128,0.35);
+  line-height: 1; padding: 0.1rem;
+  transition: color 0.2s, transform 0.15s;
+}
+.fav-btn:hover { transform: scale(1.15); }
+.fav-btn.active { color: #f5c518; }
 .card-title { font-size: 1rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 1.25rem; min-height: 2.6rem; }
 .card-meta { font-family: var(--mono); font-size: 0.58rem; color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
 .view-btn { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: none; border: 1px solid var(--border-b); padding: 0.6rem 1.2rem; cursor: pointer; width: 100%; transition: background 0.2s, border-color 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
 .view-btn:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
 .arrow { transition: transform 0.2s; }
 .view-btn:hover .arrow { transform: translateX(3px); }
+
+.empty-state { grid-column: 1/-1; padding: 3rem; text-align: center; font-family: var(--mono); font-size: 0.7rem; color: var(--dim); letter-spacing: 0.1em; background: var(--bg); }
 
 .modal-overlay {
   display: none;
@@ -152,7 +221,7 @@ nav {
   flex-shrink: 0;
 }
 
-.pdf-toolbar-left { display: flex; align-items: center; gap: 0.75rem; }
+.pdf-toolbar-left { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
 
 .tb-icon {
   width: 28px; height: 28px;
@@ -166,10 +235,11 @@ nav {
   align-items: center;
   justify-content: center;
   transition: background 0.15s;
+  flex-shrink: 0;
 }
 .tb-icon:hover { background: rgba(255,255,255,0.14); color: #fff; }
 
-.tb-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.1); margin: 0 0.25rem; }
+.tb-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.1); margin: 0 0.25rem; flex-shrink: 0; }
 
 .tb-title {
   font-family: var(--mono);
@@ -204,6 +274,8 @@ nav {
   flex-direction: column;
   gap: 1rem;
   background: #f4f4f4;
+  padding: 2rem;
+  text-align: center;
 }
 
 .pdf-loading-spinner {
@@ -216,7 +288,8 @@ nav {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.pdf-loading-text { font-family: var(--mono); font-size: 0.65rem; color: #888; letter-spacing: 0.1em; }
+.pdf-loading-text { font-family: var(--mono); font-size: 0.65rem; color: #888; letter-spacing: 0.1em; line-height: 1.6; }
+.pdf-loading-text a { color: #3a7bfd; }
 
 .pdf-bottombar {
   display: flex;
@@ -260,10 +333,12 @@ nav {
 }
 .btn-close:hover { background: #2a6aec; }
 
-footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
 .footer-copy { font-family: var(--mono); font-size: 0.58rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; }
-.footer-gh { font-family: var(--mono); font-size: 0.58rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.footer-gh { font-family: var(--mono); font-size: 0.58rem; color: var(--dim); letter-spacing: 0.1em; text-decoration: none; transition: color 0.2s; text-transform: uppercase; }
 .footer-gh:hover { color: var(--white); }
+
+.sr-only { position: absolute; width:1px; height:1px; overflow:hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 
 @media (max-width: 900px) {
   .courses-grid { grid-template-columns: repeat(2, 1fr); }
@@ -272,28 +347,39 @@ footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px
   nav, .section, .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
   .modal-box { width: 98%; height: 95vh; border-radius: 6px; }
   .tb-title { max-width: 160px; }
+  .search-input { width: 160px; }
+  .search-input:focus { width: 180px; }
 }
 @media (max-width: 600px) {
   .courses-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+  .nav-links a:not(.theme-toggle) { display: none; }
+  footer { flex-direction: column; text-align: center; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+}
+
+@media print {
+  nav, footer, .hero-cta, .search-wrap, .modal-overlay { display: none !important; }
+  body::before { display: none; }
+  .courses-grid { border: none; }
+  .course-card { break-inside: avoid; border: 1px solid #ccc; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo"> 2026-I</div>
+  <div class="nav-logo">2026-I</div>
   <ul class="nav-links">
     <li><a href="#hero">Inicio</a></li>
     <li><a href="#cursos">Cursos</a></li>
+    <li><button class="theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">◐</button></li>
   </ul>
 </nav>
 
 <section class="hero" id="hero">
   <div class="hero-bg-word">SÍLABOS</div>
   <div class="hero-stat-block">
-    <div class="hero-big-num">06</div>
+    <div class="hero-big-num" id="courseCount">06</div>
     <div class="hero-big-label">Cursos activos</div>
   </div>
   <div class="hero-eyebrow">// CICLO 2026-I</div>
@@ -308,8 +394,14 @@ footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px
 
 <section class="section" id="cursos">
   <div class="section-header">
-    <span class="section-num">01</span>
-    <span class="section-label">Cursos del ciclo</span>
+    <div class="section-header-left">
+      <span class="section-num">01</span>
+      <span class="section-label">Cursos del ciclo</span>
+    </div>
+    <div class="search-wrap">
+      <button class="filter-btn" id="favFilterBtn" title="Mostrar solo favoritos">★ Favoritos</button>
+      <input type="text" class="search-input" id="searchBox" placeholder="Buscar por nombre o código..." aria-label="Buscar curso">
+    </div>
   </div>
   <div class="courses-grid" id="coursesGrid"></div>
 </section>
@@ -320,31 +412,28 @@ footer { position: relative; z-index: 10; padding: 1.75rem 3rem; border-top: 1px
 </footer>
 
 <!-- MODAL VIEWER -->
-<div class="modal-overlay" id="modalOverlay">
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Visor de sílabo">
   <div class="modal-box">
     <div class="pdf-toolbar">
       <div class="pdf-toolbar-left">
-        <button class="tb-icon" title="Menú">☰</button>
-        <div class="tb-divider"></div>
+        <div class="tb-divider" style="margin-left:0"></div>
         <span class="tb-title" id="tbTitle">—</span>
       </div>
       <div class="pdf-toolbar-right">
         <span class="page-info" id="tbPage">PDF</span>
-        <button class="tb-icon" title="Buscar">🔍</button>
-        <button class="tb-icon" title="Guardar" id="tbDownload">⬇</button>
-        <button class="tb-icon" title="Más opciones">⋯</button>
+        <button class="tb-icon" title="Descargar" id="tbDownload" aria-label="Descargar PDF">⬇</button>
       </div>
     </div>
 
     <div class="pdf-loading" id="pdfLoading">
       <div class="pdf-loading-spinner"></div>
-      <div class="pdf-loading-text">Cargando documento...</div>
+      <div class="pdf-loading-text" id="pdfLoadingText">Cargando documento...</div>
     </div>
-    <iframe class="pdf-frame" id="mFrame" src="about:blank"
+    <iframe class="pdf-frame" id="mFrame" src="about:blank" title="Documento PDF del sílabo"
       onload="onFrameLoad()" style="display:none"></iframe>
 
     <div class="pdf-bottombar">
-      <a class="btn-open-gh" id="btnGH" href="#" target="_blank">Abrir en GitHub</a>
+      <a class="btn-open-gh" id="btnGH" href="#" target="_blank" rel="noopener">Abrir en GitHub</a>
       <button class="btn-close" onclick="closeModal()">Cerrar</button>
     </div>
   </div>
@@ -364,30 +453,75 @@ const COURSES = [
   { code:'EST317', title:'Series de Tiempo',                   pdf:'seriesDeTiempo.pdf',                 meta:'Grupo: Único · Obligatorio' }
 ];
 
+let favOnly = false;
+let loadTimeoutId = null;
+
+/* ---------- helpers ---------- */
 function rawUrl(path) {
   return `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/${path}`;
 }
 
+// PDF.js: visor confiable, sin depender de servicios no oficiales de terceros
+// pagemode=none evita que el panel de "Document outline" se abra solo y tape el documento
 function viewerUrl(path) {
-  return `https://docs.google.com/gview?url=${encodeURIComponent(rawUrl(path))}&embedded=true`;
+  return `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(rawUrl(path))}#pagemode=none`;
 }
 
-function buildGrid() {
-  document.getElementById('coursesGrid').innerHTML = COURSES.map((c, i) => `
+function getFavs() {
+  try { return JSON.parse(localStorage.getItem('silabos_favs') || '[]'); }
+  catch { return []; }
+}
+function setFavs(favs) {
+  localStorage.setItem('silabos_favs', JSON.stringify(favs));
+}
+function toggleFavorite(code, evt) {
+  evt.stopPropagation();
+  let favs = getFavs();
+  favs = favs.includes(code) ? favs.filter(f => f !== code) : [...favs, code];
+  setFavs(favs);
+  renderGrid();
+}
+
+/* ---------- render ---------- */
+function renderGrid() {
+  const query = (document.getElementById('searchBox').value || '').toLowerCase().trim();
+  const favs = getFavs();
+
+  let list = COURSES.filter(c =>
+    c.title.toLowerCase().includes(query) || c.code.toLowerCase().includes(query)
+  );
+  if (favOnly) list = list.filter(c => favs.includes(c.code));
+
+  const grid = document.getElementById('coursesGrid');
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty-state">No se encontraron cursos${favOnly ? ' favoritos' : ''}.</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map((c) => {
+    const originalIdx = COURSES.indexOf(c);
+    const isFav = favs.includes(c.code);
+    return `
     <div class="course-card">
       <div class="card-top">
-        <span class="card-idx">${String(i+1).padStart(2,'0')}</span>
-        <span class="card-code">${c.code}</span>
+        <span class="card-idx">${String(originalIdx+1).padStart(2,'0')}</span>
+        <div class="card-top-right">
+          <button class="fav-btn ${isFav ? 'active' : ''}" aria-label="Marcar como favorito" onclick="toggleFavorite('${c.code}', event)">★</button>
+          <span class="card-code">${c.code}</span>
+        </div>
       </div>
       <div class="card-title">${c.title}</div>
       <div class="card-meta">${c.meta}</div>
-      <button class="view-btn" onclick="openModal(${i})">
+      <button class="view-btn" onclick="openModal(${originalIdx})">
         Ver sílabo <span class="arrow">→</span>
       </button>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
+/* ---------- modal / pdf viewer ---------- */
 function openModal(i) {
   const c = COURSES[i];
   const raw = rawUrl(c.pdf);
@@ -400,34 +534,75 @@ function openModal(i) {
 
   const frame = document.getElementById('mFrame');
   const loading = document.getElementById('pdfLoading');
+  const loadingText = document.getElementById('pdfLoadingText');
+
+  loadingText.textContent = 'Cargando documento...';
   frame.style.display = 'none';
   loading.style.display = 'flex';
   frame.src = viewer;
 
+  clearTimeout(loadTimeoutId);
+  loadTimeoutId = setTimeout(() => {
+    if (loading.style.display !== 'none') {
+      loadingText.innerHTML = `No se pudo cargar el visor.<br><a href="${raw}" target="_blank" rel="noopener">Abrir el PDF directamente →</a>`;
+    }
+  }, 9000);
+
+  history.replaceState(null, '', '#' + c.code.toLowerCase());
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function onFrameLoad() {
+  clearTimeout(loadTimeoutId);
   document.getElementById('pdfLoading').style.display = 'none';
   document.getElementById('mFrame').style.display = 'block';
 }
 
 function closeModal() {
+  clearTimeout(loadTimeoutId);
   document.getElementById('modalOverlay').classList.remove('open');
   document.getElementById('mFrame').src = 'about:blank';
   document.getElementById('mFrame').style.display = 'none';
   document.getElementById('pdfLoading').style.display = 'none';
   document.body.style.overflow = '';
+  history.replaceState(null, '', location.pathname + location.search);
 }
 
 document.getElementById('modalOverlay').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-buildGrid();
+/* ---------- search & filters ---------- */
+document.getElementById('searchBox').addEventListener('input', renderGrid);
+document.getElementById('favFilterBtn').addEventListener('click', function() {
+  favOnly = !favOnly;
+  this.classList.toggle('active', favOnly);
+  renderGrid();
+});
+
+/* ---------- theme ---------- */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('silabos_theme', theme);
+  document.getElementById('themeToggle').textContent = theme === 'light' ? '◑' : '◐';
+}
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  applyTheme(current === 'light' ? 'dark' : 'light');
+});
+
+/* ---------- init ---------- */
+document.getElementById('courseCount').textContent = String(COURSES.length).padStart(2, '0');
+applyTheme(localStorage.getItem('silabos_theme') || 'dark');
+renderGrid();
+
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.slice(1);
+  const idx = COURSES.findIndex(c => c.code.toLowerCase() === hash);
+  if (idx >= 0) openModal(idx);
+});
 </script>
 </body>
 </html>
